@@ -5,6 +5,8 @@ services:
     container_name: inptic-app
     ports:
       - "5000:5000"
+    volumes:
+      - etudiants_data:/data
     restart: unless-stopped
 
   prometheus:
@@ -26,3 +28,6 @@ services:
     depends_on:
       - prometheus
     restart: unless-stopped
+
+volumes:
+  etudiants_data:
