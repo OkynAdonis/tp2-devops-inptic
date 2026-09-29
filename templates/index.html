@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INPTIC | Gestion des étudiants</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+        <div class="brand">
+            <div class="logo">I</div>
+
+            <div>
+                <h1>INPTIC</h1>
+                <span>Plateforme DevOps</span>
+            </div>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Système opérationnel
+        </div>
+    </div>
+</header>
+
+
+<main class="container">
+
+    <section class="hero">
+
+        <div class="hero-text">
+            <span class="badge">TP DEVOPS — LINUX</span>
+
+            <h2>
+                Gestion et supervision
+                <span>des étudiants</span>
+            </h2>
+
+            <p>
+                Application conteneurisée permettant de gérer les étudiants
+                de l'INPTIC tout en assurant le déploiement continu,
+                la supervision et la visualisation des métriques.
+            </p>
+
+            <div class="actions">
+                <a href="/api/etudiants"
+                   class="btn primary">
+                    Consulter l'API
+                </a>
+
+                <a href="/metrics"
+                   class="btn secondary">
+                    Voir les métriques
+                </a>
+            </div>
+        </div>
+
+
+        <div class="architecture">
+
+            <div class="architecture-title">
+                Architecture DevOps
+            </div>
+
+            <div class="architecture-grid">
+
+                <div class="tech">
+                    <strong>Flask</strong>
+                    <span>Application</span>
+                </div>
+
+                <div class="tech">
+                    <strong>Docker</strong>
+                    <span>Conteneurisation</span>
+                </div>
+
+                <div class="tech">
+                    <strong>Jenkins</strong>
+                    <span>CI/CD</span>
+                </div>
+
+                <div class="tech">
+                    <strong>Prometheus</strong>
+                    <span>Monitoring</span>
+                </div>
+
+                <div class="tech">
+                    <strong>Grafana</strong>
+                    <span>Visualisation</span>
+                </div>
+
+                <div class="tech active">
+                    <strong>ONLINE</strong>
+                    <span>Infrastructure</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="stats">
+
+        <article class="stat-card">
+            <span>Étudiants enregistrés</span>
+            <strong>{{ nombre_etudiants }}</strong>
+            <small>Base de démonstration</small>
+        </article>
+
+        <article class="stat-card">
+            <span>Application</span>
+            <strong class="green">ONLINE</strong>
+            <small>Service Flask actif</small>
+        </article>
+
+        <article class="stat-card">
+            <span>Déploiement</span>
+            <strong>CI/CD</strong>
+            <small>Pipeline Jenkins</small>
+        </article>
+
+        <article class="stat-card">
+            <span>Monitoring</span>
+            <strong>ACTIF</strong>
+            <small>Prometheus + Grafana</small>
+        </article>
+
+    </section>
+
+
+    <section class="students">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">GESTION</span>
+                <h3>Liste des étudiants</h3>
+            </div>
+
+            <span class="count">
+                {{ nombre_etudiants }} étudiants
+            </span>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Étudiant</th>
+                        <th>Filière</th>
+                        <th>Niveau</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for etudiant in etudiants %}
+
+                    <tr>
+                        <td>#{{ etudiant.id }}</td>
+
+                        <td>
+                            <div class="student-name">
+                                <div class="avatar">
+                                    {{ etudiant.nom[0] }}
+                                </div>
+
+                                {{ etudiant.nom }}
+                            </div>
+                        </td>
+
+                        <td>{{ etudiant.filiere }}</td>
+
+                        <td>{{ etudiant.niveau }}</td>
+
+                        <td>
+                            <span class="student-status">
+                                Actif
+                            </span>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <section class="services">
+
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">INFRASTRUCTURE</span>
+                <h3>Services DevOps</h3>
+            </div>
+        </div>
+
+
+        <div class="service-grid">
+
+            <a href="/api/etudiants"
+               class="service-card">
+
+                <span>API</span>
+
+                <strong>
+                    REST API
+                </strong>
+
+                <p>
+                    Consultation des données étudiantes au format JSON.
+                </p>
+
+            </a>
+
+
+            <a href="/metrics"
+               class="service-card">
+
+                <span>METRICS</span>
+
+                <strong>
+                    Prometheus
+                </strong>
+
+                <p>
+                    Endpoint exposant les métriques de l'application.
+                </p>
+
+            </a>
+
+
+            <div class="service-card">
+
+                <span>CI/CD</span>
+
+                <strong>
+                    Jenkins
+                </strong>
+
+                <p>
+                    Construction et déploiement automatisés avec Docker.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <span>MONITORING</span>
+
+                <strong>
+                    Grafana
+                </strong>
+
+                <p>
+                    Visualisation de la disponibilité et des requêtes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-content">
+
+        <span>
+            TP DevOps — INPTIC
+        </span>
+
+        <span>
+            Flask • Docker • Jenkins • Prometheus • Grafana
+        </span>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

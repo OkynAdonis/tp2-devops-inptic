@@ -1,0 +1,409 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --background: #f4f7fb;
+    --surface: #ffffff;
+    --text: #172033;
+    --muted: #697386;
+    --primary: #1565c0;
+    --primary-dark: #0d47a1;
+    --green: #159957;
+    --border: #e3e8ef;
+    --dark: #111827;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    width: min(1180px, 92%);
+    margin: auto;
+}
+
+.header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--primary);
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.brand h1 {
+    font-size: 18px;
+    line-height: 1.1;
+}
+
+.brand span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ecfdf3;
+    color: #08783e;
+    border: 1px solid #c8f0d8;
+    padding: 8px 13px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: #18a558;
+    border-radius: 50%;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 60px;
+    align-items: center;
+    padding: 75px 0 50px;
+}
+
+.badge,
+.eyebrow {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.hero h2 {
+    max-width: 700px;
+    margin: 14px 0 18px;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+}
+
+.hero h2 span {
+    color: var(--primary);
+}
+
+.hero p {
+    max-width: 650px;
+    color: var(--muted);
+    font-size: 17px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 19px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.primary:hover {
+    background: var(--primary-dark);
+}
+
+.secondary {
+    background: white;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.architecture {
+    background: var(--dark);
+    color: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(17, 24, 39, .15);
+}
+
+.architecture-title {
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.architecture-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.tech {
+    background: #1f2937;
+    padding: 17px;
+    border-radius: 10px;
+}
+
+.tech strong,
+.tech span {
+    display: block;
+}
+
+.tech strong {
+    margin-bottom: 4px;
+}
+
+.tech span {
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.tech.active strong {
+    color: #5ee59b;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 60px;
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.stat-card span,
+.stat-card strong,
+.stat-card small {
+    display: block;
+}
+
+.stat-card span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.stat-card strong {
+    margin: 7px 0 2px;
+    font-size: 25px;
+}
+
+.stat-card small {
+    color: #9aa2af;
+}
+
+.green {
+    color: var(--green);
+}
+
+.students,
+.services {
+    margin-bottom: 60px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 18px;
+}
+
+.section-heading h3 {
+    font-size: 27px;
+}
+
+.count {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 17px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: #f9fafc;
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+td {
+    font-size: 14px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.student-name {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-weight: 700;
+}
+
+.avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #e7f0fc;
+    color: var(--primary);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+}
+
+.student-status {
+    color: #08783e;
+    background: #ecfdf3;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.service-card {
+    display: block;
+    min-height: 170px;
+    padding: 22px;
+    background: white;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+}
+
+.service-card:hover {
+    border-color: #b6c8df;
+    transform: translateY(-2px);
+}
+
+.service-card > span {
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.service-card strong {
+    display: block;
+    margin: 8px 0;
+    font-size: 19px;
+}
+
+.service-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+footer {
+    background: #111827;
+    color: #c7ced8;
+    padding: 25px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .stats,
+    .service-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav,
+    .footer-content {
+        gap: 15px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .nav {
+        padding: 15px 0;
+    }
+
+    .hero {
+        padding-top: 45px;
+    }
+
+    .hero h2 {
+        font-size: 40px;
+    }
+
+    .stats,
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}
