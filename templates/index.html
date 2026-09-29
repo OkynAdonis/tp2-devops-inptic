@@ -3,155 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INPTIC | Gestion des étudiants</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
+    <title>INPTIC - Gestion des étudiants</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<header class="header">
-    <div class="container nav">
-        <div class="brand">
-            <div class="logo">I</div>
+<header class="topbar">
+    <div>
+        <h1>INPTIC</h1>
+        <p>Plateforme DevOps de gestion des étudiants</p>
+    </div>
 
-            <div>
-                <h1>INPTIC</h1>
-                <span>Plateforme DevOps</span>
-            </div>
-        </div>
-
-        <div class="status">
-            <span class="status-dot"></span>
-            Système opérationnel
-        </div>
+    <div class="status-badge">
+        ● Système opérationnel
     </div>
 </header>
-
 
 <main class="container">
 
     <section class="hero">
-
-        <div class="hero-text">
-            <span class="badge">TP DEVOPS — LINUX</span>
-
-            <h2>
-                Gestion et supervision
-                <span>des étudiants</span>
-            </h2>
-
+        <div>
+            <span class="label">PROJET DEVOPS</span>
+            <h2>Gestion des étudiants</h2>
             <p>
-                Application conteneurisée permettant de gérer les étudiants
-                de l'INPTIC tout en assurant le déploiement continu,
-                la supervision et la visualisation des métriques.
+                Application Flask conteneurisée avec Docker,
+                déployée automatiquement avec Jenkins et supervisée
+                avec Prometheus & Grafana.
             </p>
-
-            <div class="actions">
-                <a href="/api/etudiants"
-                   class="btn primary">
-                    Consulter l'API
-                </a>
-
-                <a href="/metrics"
-                   class="btn secondary">
-                    Voir les métriques
-                </a>
-            </div>
         </div>
-
 
         <div class="architecture">
-
-            <div class="architecture-title">
-                Architecture DevOps
-            </div>
-
-            <div class="architecture-grid">
-
-                <div class="tech">
-                    <strong>Flask</strong>
-                    <span>Application</span>
-                </div>
-
-                <div class="tech">
-                    <strong>Docker</strong>
-                    <span>Conteneurisation</span>
-                </div>
-
-                <div class="tech">
-                    <strong>Jenkins</strong>
-                    <span>CI/CD</span>
-                </div>
-
-                <div class="tech">
-                    <strong>Prometheus</strong>
-                    <span>Monitoring</span>
-                </div>
-
-                <div class="tech">
-                    <strong>Grafana</strong>
-                    <span>Visualisation</span>
-                </div>
-
-                <div class="tech active">
-                    <strong>ONLINE</strong>
-                    <span>Infrastructure</span>
-                </div>
-
-            </div>
-
+            <span>Flask</span>
+            <span>Docker</span>
+            <span>Jenkins</span>
+            <span>Prometheus</span>
+            <span>Grafana</span>
         </div>
-
     </section>
 
 
     <section class="stats">
 
-        <article class="stat-card">
-            <span>Étudiants enregistrés</span>
-            <strong>{{ nombre_etudiants }}</strong>
-            <small>Base de démonstration</small>
-        </article>
+        <div class="card">
+            <h3>{{ nombre_etudiants }}</h3>
+            <p>Étudiants enregistrés</p>
+        </div>
 
-        <article class="stat-card">
-            <span>Application</span>
-            <strong class="green">ONLINE</strong>
-            <small>Service Flask actif</small>
-        </article>
+        <div class="card">
+            <h3>ONLINE</h3>
+            <p>Application</p>
+        </div>
 
-        <article class="stat-card">
-            <span>Déploiement</span>
-            <strong>CI/CD</strong>
-            <small>Pipeline Jenkins</small>
-        </article>
+        <div class="card">
+            <h3>CI/CD</h3>
+            <p>Jenkins</p>
+        </div>
 
-        <article class="stat-card">
-            <span>Monitoring</span>
-            <strong>ACTIF</strong>
-            <small>Prometheus + Grafana</small>
-        </article>
+        <div class="card">
+            <h3>ACTIVE</h3>
+            <p>Monitoring</p>
+        </div>
+
+    </section>
+
+
+    <section class="form-section">
+
+        <div class="section-header">
+            <div>
+                <span class="label">GESTION</span>
+                <h2>Ajouter un étudiant</h2>
+            </div>
+        </div>
+
+        <form action="/ajouter" method="POST" class="student-form">
+
+            <div class="field">
+                <label for="nom">Nom</label>
+                <input
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Nom de l'étudiant"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <label for="filiere">Filière</label>
+                <select id="filiere" name="filiere" required>
+                    <option value="">Sélectionner</option>
+                    <option value="Genie Informatique">
+                        Génie Informatique
+                    </option>
+                    <option value="Telecommunications">
+                        Télécommunications
+                    </option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="niveau">Niveau</label>
+                <select id="niveau" name="niveau" required>
+                    <option value="">Sélectionner</option>
+                    <option value="DTS">DTS</option>
+                    <option value="Licence">Licence</option>
+                </select>
+            </div>
+
+            <button type="submit" class="primary-button">
+                Ajouter l'étudiant
+            </button>
+
+        </form>
 
     </section>
 
 
     <section class="students">
 
-        <div class="section-heading">
-
+        <div class="section-header">
             <div>
-                <span class="eyebrow">GESTION</span>
-                <h3>Liste des étudiants</h3>
+                <span class="label">BASE DE DONNÉES</span>
+                <h2>Liste des étudiants</h2>
             </div>
 
-            <span class="count">
-                {{ nombre_etudiants }} étudiants
-            </span>
-
+            <a href="/api/etudiants" target="_blank" class="api-link">
+                Voir API JSON
+            </a>
         </div>
-
 
         <div class="table-wrapper">
 
@@ -160,10 +141,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Étudiant</th>
+                        <th>Nom</th>
                         <th>Filière</th>
                         <th>Niveau</th>
-                        <th>Statut</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
@@ -172,26 +153,39 @@
                     {% for etudiant in etudiants %}
 
                     <tr>
-                        <td>#{{ etudiant.id }}</td>
-
-                        <td>
-                            <div class="student-name">
-                                <div class="avatar">
-                                    {{ etudiant.nom[0] }}
-                                </div>
-
-                                {{ etudiant.nom }}
-                            </div>
-                        </td>
-
+                        <td>{{ etudiant.id }}</td>
+                        <td>{{ etudiant.nom }}</td>
                         <td>{{ etudiant.filiere }}</td>
-
                         <td>{{ etudiant.niveau }}</td>
 
-                        <td>
-                            <span class="student-status">
-                                Actif
-                            </span>
+                        <td class="crud-actions">
+
+                            <button
+                                type="button"
+                                class="edit-button"
+                                onclick='ouvrirModification(
+                                    {{ etudiant.id }},
+                                    {{ etudiant.nom|tojson }},
+                                    {{ etudiant.filiere|tojson }},
+                                    {{ etudiant.niveau|tojson }}
+                                )'
+                            >
+                                Modifier
+                            </button>
+
+                            <form
+                                action="/supprimer/{{ etudiant.id }}"
+                                method="POST"
+                                onsubmit="return confirm('Supprimer cet étudiant ?');"
+                            >
+                                <button
+                                    type="submit"
+                                    class="delete-button"
+                                >
+                                    Supprimer
+                                </button>
+                            </form>
+
                         </td>
                     </tr>
 
@@ -206,79 +200,92 @@
     </section>
 
 
-    <section class="services">
+    <section id="modification" class="form-section hidden">
 
-        <div class="section-heading">
+        <div class="section-header">
             <div>
-                <span class="eyebrow">INFRASTRUCTURE</span>
-                <h3>Services DevOps</h3>
+                <span class="label">MODIFICATION</span>
+                <h2>Modifier l'étudiant</h2>
             </div>
         </div>
 
+        <form
+            id="form-modification"
+            method="POST"
+            class="student-form"
+        >
 
-        <div class="service-grid">
-
-            <a href="/api/etudiants"
-               class="service-card">
-
-                <span>API</span>
-
-                <strong>
-                    REST API
-                </strong>
-
-                <p>
-                    Consultation des données étudiantes au format JSON.
-                </p>
-
-            </a>
-
-
-            <a href="/metrics"
-               class="service-card">
-
-                <span>METRICS</span>
-
-                <strong>
-                    Prometheus
-                </strong>
-
-                <p>
-                    Endpoint exposant les métriques de l'application.
-                </p>
-
-            </a>
-
-
-            <div class="service-card">
-
-                <span>CI/CD</span>
-
-                <strong>
-                    Jenkins
-                </strong>
-
-                <p>
-                    Construction et déploiement automatisés avec Docker.
-                </p>
-
+            <div class="field">
+                <label for="modifier-nom">Nom</label>
+                <input
+                    type="text"
+                    id="modifier-nom"
+                    name="nom"
+                    required
+                >
             </div>
 
-
-            <div class="service-card">
-
-                <span>MONITORING</span>
-
-                <strong>
-                    Grafana
-                </strong>
-
-                <p>
-                    Visualisation de la disponibilité et des requêtes.
-                </p>
-
+            <div class="field">
+                <label for="modifier-filiere">Filière</label>
+                <select
+                    id="modifier-filiere"
+                    name="filiere"
+                    required
+                >
+                    <option value="Genie Informatique">
+                        Génie Informatique
+                    </option>
+                    <option value="Telecommunications">
+                        Télécommunications
+                    </option>
+                </select>
             </div>
 
+            <div class="field">
+                <label for="modifier-niveau">Niveau</label>
+                <select
+                    id="modifier-niveau"
+                    name="niveau"
+                    required
+                >
+                    <option value="DTS">DTS</option>
+                    <option value="Licence">Licence</option>
+                </select>
+            </div>
+
+            <button type="submit" class="primary-button">
+                Enregistrer
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="services">
+
+        <div class="service-card">
+            <h3>API REST</h3>
+            <p>Données des étudiants disponibles au format JSON.</p>
+            <a href="/api/etudiants" target="_blank">
+                /api/etudiants
+            </a>
+        </div>
+
+        <div class="service-card">
+            <h3>Prometheus</h3>
+            <p>Métriques exposées par l'application Flask.</p>
+            <a href="/metrics" target="_blank">
+                /metrics
+            </a>
+        </div>
+
+        <div class="service-card">
+            <h3>Monitoring</h3>
+            <p>
+                Supervision de l'application avec Prometheus
+                et visualisation dans Grafana.
+            </p>
         </div>
 
     </section>
@@ -287,20 +294,31 @@
 
 
 <footer>
-
-    <div class="container footer-content">
-
-        <span>
-            TP DevOps — INPTIC
-        </span>
-
-        <span>
-            Flask • Docker • Jenkins • Prometheus • Grafana
-        </span>
-
-    </div>
-
+    TP DevOps — INPTIC
 </footer>
+
+
+<script>
+
+function ouvrirModification(id, nom, filiere, niveau) {
+
+    const section = document.getElementById("modification");
+    const formulaire = document.getElementById("form-modification");
+
+    formulaire.action = "/modifier/" + id;
+
+    document.getElementById("modifier-nom").value = nom;
+    document.getElementById("modifier-filiere").value = filiere;
+    document.getElementById("modifier-niveau").value = niveau;
+
+    section.classList.remove("hidden");
+
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+</script>
 
 </body>
 </html>
